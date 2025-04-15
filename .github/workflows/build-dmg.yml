@@ -38,8 +38,8 @@ jobs:
 
         run: |
           mkdir -p dmg-output
+          rm -f dmg-output/TCPPrinter.dmg
           create-dmg \
-            --overwrite \
             --dmg-title="TCPPrinter" \
             --app-drop-link \
             dmg-output/TCPPrinter.dmg \
