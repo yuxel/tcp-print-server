@@ -35,16 +35,20 @@ jobs:
           brew install create-dmg
 
       - name: Create DMG
+
         run: |
           mkdir -p dmg-output
-          create-dmg dist/TCPPrinter.app \
+          create-dmg \
             --overwrite \
             --dmg-title="TCPPrinter" \
             --app-drop-link \
-            dmg-output
+            dmg-output/TCPPrinter.dmg \
+            dist/TCPPrinter.app          
 
       - name: Upload DMG as Artifact
         uses: actions/upload-artifact@v4
         with:
           name: tcp_print_server_macos_dmg
           path: dmg-output/TCPPrinter.dmg
+
+
