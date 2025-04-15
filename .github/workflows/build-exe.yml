@@ -22,7 +22,7 @@ jobs:
 
     - name: Build EXE
       run: |
-        pyinstaller --noconsole --onefile tcp_print_server.py
+        pyinstaller --noconsole --onefile tcp_print_server_win32.py
 
     - name: Upload EXE
       uses: actions/upload-artifact@v4

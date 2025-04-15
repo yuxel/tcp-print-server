@@ -1,0 +1,51 @@
+name: Build macOS DMG
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build-dmg:
+    runs-on: macos-latest
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+          pip install pyinstaller
+
+      - name: Build .app with PyInstaller
+        run: |
+          pyinstaller --onefile --windowed --name TCPPrinter tcp_print_server_macos.py
+          mkdir -p dist/TCPPrinter.app/Contents/MacOS
+          mv dist/TCPPrinter dist/TCPPrinter.app/Contents/MacOS/
+
+      - name: Install create-dmg
+        run: |
+          brew install create-dmg
+
+      - name: Create DMG
+        run: |
+          mkdir dmg-output
+          create-dmg dist/TCPPrinter.app \
+            --overwrite \
+            --dmg-title="TCPPrinter" \
+            --app-drop-link \
+            dmg-output
+
+      - name: Upload DMG as Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: tcp-printer-dmg
+          path: dmg-output/*.dmg
+
