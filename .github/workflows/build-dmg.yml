@@ -39,11 +39,8 @@ jobs:
         run: |
           mkdir -p dmg-output
           rm -f dmg-output/TCPPrinter.dmg
-          create-dmg \
-            --dmg-title="TCPPrinter" \
-            --app-drop-link \
-            dmg-output/TCPPrinter.dmg \
-            dist/TCPPrinter.app          
+          create-dmg dmg-output/TCPPrinter.dmg dist/TCPPrinter.app
+
 
       - name: Upload DMG as Artifact
         uses: actions/upload-artifact@v4
