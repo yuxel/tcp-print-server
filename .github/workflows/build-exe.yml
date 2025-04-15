@@ -27,5 +27,5 @@ jobs:
     - name: Upload EXE
       uses: actions/upload-artifact@v4
       with:
-        name: tcp_print_server_exe
-        path: dist/tcp_print_server.exe
+        name: tcp_print_server_win32_exe
+        path: dist/tcp_print_server_win32.exe
