@@ -36,16 +36,15 @@ jobs:
 
       - name: Create DMG
         run: |
-          mkdir dmg-output
+          mkdir -p dmg-output
           create-dmg dist/TCPPrinter.app \
             --overwrite \
             --dmg-title="TCPPrinter" \
             --app-drop-link \
-            dmg-output.dmg
+            dmg-output
 
       - name: Upload DMG as Artifact
         uses: actions/upload-artifact@v4
         with:
           name: tcp_print_server_macos_dmg
-          path: dmg-output.dmg
-
+          path: dmg-output/TCPPrinter.dmg
