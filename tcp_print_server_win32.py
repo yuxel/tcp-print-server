@@ -70,9 +70,11 @@ def setup_tray():
     icon.run()
 
 if __name__ == '__main__':
+    print(f"Main")
     # Socket sunucuyu ayrı bir thread’de başlat
     threading.Thread(target=start_socket_server, daemon=True).start()
 
+    print(f"Tray Icon")
     # Tray iconu başlat
     setup_tray()
 
