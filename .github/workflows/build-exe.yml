@@ -18,7 +18,7 @@ jobs:
 
     - name: Install dependencies
       run: |
-        pip install pywin32 pyinstaller
+        pip install pywin32 pyinstaller pystray pillow
 
     - name: Build EXE
       run: |
